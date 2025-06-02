@@ -5,26 +5,27 @@ pipeline {
         stage("Permission") {
             steps {
                 echo "🔑 Set execute permission for gradlew"
-                sh 'chmod +x ./gradlew'
+                sh 'chmod +x ./Calculator/gradlew'
             }
         }
         stage("Compile") {
             steps {
                 echo "🛠️ Compiling source code..."
-                sh './gradlew compileJava'
+                sh './Calculator/gradlew -p Calculator compileJava'
             }
         }
         stage("Build") {
             steps {
                 echo "🏗️ Building project..."
-                sh './gradlew build'
+                sh './Calculator/gradlew -p Calculator build'
             }
         }
         stage("Unit test") {
             steps {
                 echo "🧪 Running unit tests..."
-                sh './gradlew test'
+                sh './Calculator/gradlew -p Calculator test'
             }
         }
     }
 }
+
