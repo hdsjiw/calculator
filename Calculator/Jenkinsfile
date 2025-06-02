@@ -1,20 +1,26 @@
 pipeline {
-     agent any
-     stages {
-          stage("Compile") {
-               steps {
-                    sh "./gradlew compileJava"
-               }
-          }
-            stage("Build") {
-                         steps {
-                              sh "./gradlew build"
-                         }
-                    }
-          stage("Unit test") {
-               steps {
-                    sh "./gradlew test"
-                         }
-                    }
-               }
-          }
+    agent any
+
+    stages {
+        stage("Permission") {
+            steps {
+                sh 'chmod +x ./gradlew'
+            }
+        }
+        stage("Compile") {
+            steps {
+                sh "./gradlew compileJava"
+            }
+        }
+        stage("Build") {
+            steps {
+                sh "./gradlew build"
+            }
+        }
+        stage("Unit test") {
+            steps {
+                sh "./gradlew test"
+            }
+        }
+    }
+}
